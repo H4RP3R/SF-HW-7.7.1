@@ -1,6 +1,7 @@
 package calc
 
 import (
+	"errors"
 	"fmt"
 	"testing"
 )
@@ -31,7 +32,7 @@ func Test_calculator_Calculate(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			c := calculator{}
 			got, err := c.Calculate(tt.a, tt.b, tt.op)
-			if err != tt.wantErr {
+			if !errors.Is(err, tt.wantErr) {
 				t.Errorf("calculator.Calculate() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
